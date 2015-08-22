@@ -1,18 +1,16 @@
-﻿Class MainWindow 
+﻿Class MainWindow
+    Private _interTabClientInstance1 As MyInterTabClient
 
-    Public Shared ReadOnly InterTabClientProperty As DependencyProperty = DependencyProperty.Register("InterTabClientInstance",
-                                                                                                      GetType(MyInterTabClient),
-                                                                                                      GetType(MainWindow),
-                                                                                                      New PropertyMetadata(Nothing))
+    Public Sub New
+        _interTabClientInstance1 = New MyInterTabClient()
+    End Sub
 
     Public Property InterTabClientInstance As MyInterTabClient
         Get
-            If GetValue(InterTabClientProperty) Is Nothing Then InterTabClientInstance = New MyInterTabClient
-            Return DirectCast(GetValue(InterTabClientProperty), MyInterTabClient)
+            Return _interTabClientInstance1
         End Get
-        Set(value As MyInterTabClient)
-            SetValue(InterTabClientProperty, value)
+        Set
+            _interTabClientInstance1 = value
         End Set
     End Property
-
 End Class
